@@ -1,4 +1,4 @@
-#OCR using Tesseract#
+# OCR using Tesseract
 
 ## Requirements
 
