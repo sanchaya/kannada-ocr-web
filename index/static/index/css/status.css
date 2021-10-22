@@ -1,0 +1,43 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  color: #999;
+  background-color: #eee;
+  font-family: sans-serif;
+  font-size: 100%;
+}
+
+.status-input {
+  text-align: center;
+}
+
+.status-input {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0px;
+}
+
+.status-input form > *:not(:last-child) {
+  margin-right: 10px;
+}
+
+.wrong,
+.success {
+  display: none;
+}
+
+.status-result.w .wrong {
+  display: block;
+}
+
+.status-result.s .success {
+  display: block;
+}

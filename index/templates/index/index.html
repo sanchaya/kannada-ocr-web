@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tesseract</title>
+    <link rel="stylesheet" href="{% static 'index/css/bootstrap.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'index/css/all.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'index/css/dropdownUpload.css' %}" />
+    <script src="{% static 'index/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'index/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'index/js/dropdownUpload.js' %}"></script>
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-sm navbar-dark"
+      style="background-color: #666"
+    >
+      <a class="navbar-brand" href="#">Techfiz</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="/"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/status"
+              >Status <span class="sr-only">(current)</span></a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <form method="post" action="/" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label class="file">
+          <div>Drop a file or click to select one</div>
+          <input type="file" accept="application/pdf" name="pdf" />
+          <!-- use multiple, even if it’s not allowed, to be able to show an info text -->
+        </label>
+        <input
+          type="email"
+          required
+          max-length="200"
+          placeholder="Enter your email..."
+          name="email"
+        />
+        <button class="upload-btn" type="submit" disabled>
+          Upload <i class="fa fa-upload"></i>
+        </button>
+      </form>
+      {% if message == True %}
+      <div class="alert alert-success">
+        <strong>Success!</strong> File successfully uploaded <br />
+        <strong>Your Job Id:</strong> {{job}}
+      </div>
+      {% elif message == False %}
+      <div class="alert alert-danger">
+        <strong>Failed!</strong> File successfully uploaded
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
+<!--
+TODO:
+ • add clear/reset option
+ • add validation of type and size
+-->
